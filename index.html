@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ app_name }} | Security Operations</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">N</div>
+            <div>
+                <h2>NEMESIS</h2>
+                <span>CORE SYSTEM v{{ version }}</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">MAIN INTERFACE</div>
+
+        <nav class="navigation">
+            <button class="nav-item active" data-page="overview">OVERVIEW</button>
+            <button class="nav-item" data-page="recon">RECONNAISSANCE</button>
+            <button class="nav-item" data-page="assessment">ASSESSMENT</button>
+            <button class="nav-item" data-page="simulation">SIMULATION</button>
+            <button class="nav-item" data-page="threat-intelligence">THREAT INTEL</button>
+            <button class="nav-item" data-page="analytics">DETECTION ANALYTICS</button>
+            <button class="nav-item" data-page="monitoring">SECURITY MONITORING</button>
+            <button class="nav-item" data-page="integration">INTEGRATION</button>
+            <button class="nav-item" data-page="reports">REPORTS</button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+            <p>AUTHORIZED LOCAL LAB</p>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <span class="topbar-label">SECURITY RESEARCH ENVIRONMENT</span>
+                <div class="current-page" id="current-page">OVERVIEW</div>
+            </div>
+
+            <div class="topbar-right">
+                <span id="clock">00:00:00</span>
+                <span class="online-indicator">ONLINE</span>
+            </div>
+        </header>
+
+        <!-- OVERVIEW -->
+
+        <section class="page active" id="overview">
+
+            <div class="hero">
+                <div class="hero-content">
+                    <span class="eyebrow">NEMESIS CORE INITIALIZED</span>
+                    <h1>CONTROL THE<br><span>UNKNOWN.</span></h1>
+                    <p>
+                        Adversary Research & Emulation System.
+                        Authorized local security assessment environment.
+                    </p>
+                    <div class="hero-tag">[ AUTHORIZED OPERATIONS ONLY ]</div>
+                </div>
+                <div class="hero-decoration">N</div>
+            </div>
+
+            <div class="section-heading">LIVE LOCAL STATUS</div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">CORE STATUS</span>
+                    <strong class="metric-value green">ONLINE</strong>
+                    <span class="metric-detail">Application initialized</span>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">RECONNAISSANCE</span>
+                    <strong class="metric-value" id="overview-recon">IDLE</strong>
+                    <span class="metric-detail">Local inventory engine</span>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">SECURITY ASSESSMENTS</span>
+                    <strong class="metric-value" id="overview-assessment">0</strong>
+                    <span class="metric-detail">Saved assessment records</span>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">SENTINEL X</span>
+                    <strong class="metric-value green" id="sentinel-status">CHECKING</strong>
+                    <span class="metric-detail" id="integration-detail">Checking local directory</span>
+                </div>
+            </div>
+
+            <div class="section-heading">MISSION MODULES</div>
+
+            <div class="module-grid">
+                <div class="module-card">
+                    <span class="module-number">01</span>
+                    <h3>RECONNAISSANCE</h3>
+                    <p>Local system inventory and information collection.</p>
+                    <button class="module-link" data-target="recon">OPEN MODULE</button>
+                </div>
+
+                <div class="module-card">
+                    <span class="module-number">02</span>
+                    <h3>SECURITY ASSESSMENT</h3>
+                    <p>Defensive security checks and configuration review.</p>
+                    <button class="module-link" data-target="assessment">OPEN MODULE</button>
+                </div>
+
+                <div class="module-card">
+                    <span class="module-number">03</span>
+                    <h3>ADVERSARY SIMULATION</h3>
+                    <p>Harmless event emulation for detection validation.</p>
+                    <button class="module-link" data-target="simulation">OPEN MODULE</button>
+                </div>
+
+                <div class="module-card">
+                    <span class="module-number">04</span>
+                    <h3>THREAT INTELLIGENCE</h3>
+                    <p>Candidate threat references and ATT&CK mappings.</p>
+                    <button class="module-link" data-target="threat-intelligence">OPEN MODULE</button>
+                </div>
+
+                <div class="module-card">
+                    <span class="module-number">05</span>
+                    <h3>DETECTION ANALYTICS</h3>
+                    <p>Analysis of stored simulation detection results.</p>
+                    <button class="module-link" data-target="analytics">OPEN MODULE</button>
+                </div>
+
+                <div class="module-card">
+                    <span class="module-number">06</span>
+                    <h3>SECURITY MONITORING</h3>
+                    <p>Read-only timeline of inert local events.</p>
+                    <button class="module-link" data-target="monitoring">OPEN MODULE</button>
+                </div>
+            </div>
+
+            <div class="section-heading">SYSTEM INFORMATION</div>
+
+            <div class="panel system-panel">
+                <div><span>APPLICATION</span><strong>NEMESIS</strong></div>
+                <div><span>VERSION</span><strong>{{ version }}</strong></div>
+                <div><span>PLATFORM</span><strong id="platform">Loading...</strong></div>
+                <div><span>SERVER</span><strong>127.0.0.1:8765</strong></div>
+                <div><span>MODE</span><strong>LOCAL LAB</strong></div>
+                <div><span>AUTHORIZATION</span><strong>REQUIRED</strong></div>
+            </div>
+        </section>
+
+        <!-- RECONNAISSANCE -->
+
+        <section class="page" id="recon">
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">INTELLIGENCE MODULE</span>
+                    <h2>RECONNAISSANCE</h2>
+                    <p>Authorized local system inventory.</p>
+                </div>
+                <button id="run-recon" class="recon-button">RUN RECON</button>
+            </div>
+
+            <div id="recon-message" class="recon-message">
+                Awaiting reconnaissance operation.
+            </div>
+
+            <div class="metrics-grid recon-grid">
+                <div class="metric-card">
+                    <span class="metric-label">HOSTNAME</span>
+                    <strong id="recon-hostname">---</strong>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">OPERATING SYSTEM</span>
+                    <strong id="recon-os">---</strong>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">LOCAL IP</span>
+                    <strong id="recon-ip">---</strong>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">ARCHITECTURE</span>
+                    <strong id="recon-architecture">---</strong>
+                </div>
+            </div>
+
+            <div class="panel recon-panel">
+                <h3>RECONNAISSANCE HISTORY</h3>
+                <div id="recon-history">No records loaded.</div>
+            </div>
+        </section>
+
+        <!-- ASSESSMENT -->
+
+        <section class="page" id="assessment">
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">DEFENSIVE SECURITY MODULE</span>
+                    <h2>SECURITY ASSESSMENT</h2>
+                    <p>Read-only local Windows security configuration review.</p>
+                </div>
+                <button id="run-assessment" class="recon-button">RUN ASSESSMENT</button>
+            </div>
+
+            <div id="assessment-message" class="recon-message">
+                Assessment engine standing by.
+            </div>
+
+            <div class="section-heading">LATEST ASSESSMENT SUMMARY</div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">TOTAL CHECKS</span>
+                    <strong class="metric-value" id="assessment-total">0</strong>
+                    <span class="metric-detail">Checks executed</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">PASS</span>
+                    <strong class="metric-value green" id="assessment-pass">0</strong>
+                    <span class="metric-detail">Checks passed</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">WARNING</span>
+                    <strong class="metric-value" id="assessment-warning">0</strong>
+                    <span class="metric-detail">Review recommended</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">ERROR</span>
+                    <strong class="metric-value" id="assessment-error">0</strong>
+                    <span class="metric-detail">Checks unavailable or failed</span>
+                </div>
+            </div>
+
+            <div class="panel recon-panel">
+                <h3>ASSESSMENT DETAILS</h3>
+                <div id="assessment-results">No assessment has been executed.</div>
+            </div>
+
+            <div class="panel recon-panel">
+                <h3>ASSESSMENT HISTORY</h3>
+                <div id="assessment-history">No assessment records loaded.</div>
+            </div>
+        </section>
+
+        <!-- SIMULATION LAB -->
+
+        <section class="page" id="simulation">
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">DEFENSIVE EMULATION MODULE</span>
+                    <h2>SIMULATION LAB</h2>
+                    <p>Inert security event generation and detection validation.</p>
+                </div>
+                <button id="refresh-simulation" class="recon-button">REFRESH HISTORY</button>
+            </div>
+
+            <div id="simulation-message" class="recon-message">
+                Simulation engine standing by.
+            </div>
+
+            <div class="section-heading">AVAILABLE SCENARIOS</div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">AUTHENTICATION</span>
+                    <strong class="metric-value">AUTH-001</strong>
+                    <span class="metric-detail">Failed Login Event</span>
+                    <button class="module-link simulation-run" data-scenario="failed_login">GENERATE EVENT</button>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">NETWORK SECURITY</span>
+                    <strong class="metric-value">FW-001</strong>
+                    <span class="metric-detail">Firewall Configuration Alert</span>
+                    <button class="module-link simulation-run" data-scenario="firewall_alert">GENERATE EVENT</button>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">ENDPOINT SECURITY</span>
+                    <strong class="metric-value">EDR-001</strong>
+                    <span class="metric-detail">Unusual Process Alert</span>
+                    <button class="module-link simulation-run" data-scenario="suspicious_process">GENERATE EVENT</button>
+                </div>
+
+                <div class="metric-card">
+                    <span class="metric-label">ACCESS CONTROL</span>
+                    <strong class="metric-value">ACCESS-001</strong>
+                    <span class="metric-detail">Privilege Change Event</span>
+                    <button class="module-link simulation-run" data-scenario="privilege_change">GENERATE EVENT</button>
+                </div>
+            </div>
+
+            <div class="section-heading">LATEST DETECTION RESULT</div>
+            <div class="panel recon-panel">
+                <div id="simulation-result">No simulation executed yet.</div>
+            </div>
+
+            <div class="section-heading">SIMULATION HISTORY</div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">TOTAL EVENTS</span>
+                    <strong class="metric-value" id="simulation-total">0</strong>
+                    <span class="metric-detail">Stored simulation records</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">DETECTED EVENTS</span>
+                    <strong class="metric-value green" id="simulation-detected">0</strong>
+                    <span class="metric-detail">Matched detection rules</span>
+                </div>
+            </div>
+
+            <div class="panel recon-panel">
+                <h3>EVENT HISTORY</h3>
+                <div id="simulation-history">No simulation records loaded.</div>
+            </div>
+
+            <p class="module-status">EXECUTION MODE: INERT LOCAL EVENT — NO REAL ATTACKS</p>
+        </section>
+
+        <!-- THREAT INTELLIGENCE -->
+
+        <section class="page" id="threat-intelligence">
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">RESEARCH MODULE</span>
+                    <h2>THREAT INTELLIGENCE</h2>
+                    <p>Scenario catalog and candidate MITRE ATT&CK references.</p>
+                </div>
+                <button id="refresh-threat-intel" class="recon-button">REFRESH CATALOG</button>
+            </div>
+
+            <div id="threat-intel-message" class="recon-message">
+                Threat intelligence catalog standing by.
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">CATALOG VERSION</span>
+                    <strong id="threat-version">---</strong>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">CATALOG ENTRIES</span>
+                    <strong id="threat-total">0</strong>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">MAPPED REFERENCES</span>
+                    <strong id="threat-mappings">0</strong>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">MAPPING STATUS</span>
+                    <strong id="threat-status">---</strong>
+                </div>
+            </div>
+
+            <div class="panel recon-panel">
+                <h3>THREAT SCENARIO CATALOG</h3>
+                <div id="threat-intel-list">No catalog loaded.</div>
+            </div>
+
+            <p class="module-status">
+                CANDIDATE MAPPINGS ONLY — NOT CONFIRMED ATTACK EVIDENCE
+            </p>
+        </section>
+
+        <!-- DETECTION ANALYTICS -->
+
+        <section class="page" id="analytics">
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">DETECTION RESEARCH MODULE</span>
+                    <h2>DETECTION ANALYTICS</h2>
+                    <p>Statistics derived from stored inert simulation events.</p>
+                </div>
+                <button id="refresh-analytics" class="recon-button">REFRESH ANALYTICS</button>
+            </div>
+
+            <div id="analytics-message" class="recon-message">
+                Analytics engine standing by.
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">TOTAL RECORDS</span>
+                    <strong id="analytics-total">0</strong>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">DETECTED</span>
+                    <strong class="green" id="analytics-detected">0</strong>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">NOT DETECTED</span>
+                    <strong id="analytics-not-detected">0</strong>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">DETECTION COVERAGE</span>
+                    <strong id="analytics-coverage">0%</strong>
+                </div>
+            </div>
+
+            <div class="panel recon-panel">
+                <h3>SCENARIO DISTRIBUTION</h3>
+                <div id="analytics-scenarios">No analytics loaded.</div>
+            </div>
+
+            <div class="panel recon-panel">
+                <h3>SEVERITY DISTRIBUTION</h3>
+                <div id="analytics-severity">No analytics loaded.</div>
+            </div>
+
+            <div class="panel recon-panel">
+                <h3>CATEGORY DISTRIBUTION</h3>
+                <div id="analytics-categories">No analytics loaded.</div>
+            </div>
+
+            <p class="module-status">
+                IMPORTANT: COVERAGE APPLIES ONLY TO STORED INERT SIMULATION RECORDS.
+                IT DOES NOT MEASURE REAL-WORLD DETECTION EFFECTIVENESS.
+            </p>
+        </section>
+
+        <!-- SECURITY MONITORING -->
+
+        <section class="page" id="monitoring">
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">READ-ONLY MONITORING MODULE</span>
+                    <h2>SECURITY MONITORING</h2>
+                    <p>Timeline and summary of stored local simulation events.</p>
+                </div>
+                <button id="refresh-monitoring" class="recon-button">REFRESH TIMELINE</button>
+            </div>
+
+            <div id="monitoring-message" class="recon-message">
+                Monitoring interface standing by.
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">ANALYZED EVENTS</span>
+                    <strong id="monitoring-total">0</strong>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">DETECTED EVENTS</span>
+                    <strong class="green" id="monitoring-detected">0</strong>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">NOT DETECTED</span>
+                    <strong id="monitoring-not-detected">0</strong>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">MONITORING MODE</span>
+                    <strong id="monitoring-mode">READ ONLY</strong>
+                </div>
+            </div>
+
+            <div class="panel recon-panel">
+                <h3>EVENT TIMELINE</h3>
+                <div id="monitoring-timeline">No monitoring records loaded.</div>
+            </div>
+
+            <p class="module-status">
+                DATA SOURCE: INERT LOCAL SIMULATION — NOT LIVE SYSTEM MONITORING
+            </p>
+        </section>
+
+        <!-- INTEGRATION -->
+
+        <section class="page" id="integration">
+            <div class="section-heading">SENTINEL X INTEGRATION</div>
+            <div class="panel">
+                <h2>DEFENSIVE MONITORING</h2>
+                <p id="integration-page-detail">Checking SENTINEL X directory.</p>
+                <p class="module-status">
+                    DIRECTORY DETECTION ONLY — INTEGRATION NOT CONFIGURED
+                </p>
+            </div>
+        </section>
+
+        <!-- REPORT CENTER -->
+
+        <section class="page" id="reports">
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">INTELLIGENCE MODULE</span>
+                    <h2>REPORT CENTER</h2>
+                    <p>Generated local security assessment reports.</p>
+                </div>
+                <button id="refresh-reports" class="recon-button">REFRESH REPORTS</button>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">TOTAL REPORTS</span>
+                    <strong class="metric-value" id="report-total">0</strong>
+                    <span class="metric-detail">Saved assessments</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">LATEST RECORD</span>
+                    <strong class="metric-value" id="report-latest">---</strong>
+                    <span class="metric-detail">Most recent assessment</span>
+                </div>
+            </div>
+
+            <div id="report-message" class="recon-message">
+                Report center standing by.
+            </div>
+
+            <div class="panel recon-panel">
+                <h3>AVAILABLE ASSESSMENT REPORTS</h3>
+                <div id="report-list">No reports loaded.</div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            NEMESIS CORE © 2026 — AUTHORIZED LOCAL SECURITY RESEARCH
+        </footer>
+
+    </main>
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+<script src="{{ url_for('static', filename='js/executive.js') }}"></script>
+<script src="{{ url_for('static', filename='js/export.js') }}"></script>
+</body>
+</html>
